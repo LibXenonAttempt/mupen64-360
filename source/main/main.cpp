@@ -44,6 +44,8 @@
 
 #include "winlnxdefs.h"
 
+#include <elf/elf.h>
+
 extern "C" {
 	#include "main.h"
 	#include "guifuncs.h"
@@ -203,9 +205,9 @@ void ActionReboot(void * unused)
 	for(;;);
 }
 
-void ActionXell(void * unused)
+void ActionBeter(void * unused)
 {
-    exit(0);
+	elf_runFromDisk("uda0:/xenon.elf");
 }
 
 void SetEnhName()
@@ -401,8 +403,8 @@ void do_GUI()
     }
     {
         lpBrowserActionEntry action = new BrowserActionEntry();
-        action->name = "Return to Xell";
-        action->action = ActionXell;
+        action->name = "Xenonize";
+        action->action = ActionBeter;
         action->param = NULL;
         Browser.AddAction(action);
     }
